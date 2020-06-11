@@ -9,6 +9,8 @@ This is a AWS SAM app for populating an InfluxDB with S3 objects.
 
 The function is designed to work with [OpenAQ](https://github.com/openaq/openaq-api) fetch objects, but can be adapted to your needs.
 
+This was tested to work with InfluxDB Cloud 2.0
+
 ## Configuration
 
 The SNS topic ARN can be changed in the `template.yml` file
