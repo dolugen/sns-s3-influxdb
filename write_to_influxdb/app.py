@@ -31,7 +31,7 @@ def fetch_result_to_lineprotocol(result):
         tagset = []
         fieldset = []
         for tag_name in tagset_headers:
-            tag_value = row[tag_name].replace(' ', '\ ')
+            tag_value = row[tag_name]
             tagset.append(f'{tag_name}={tag_value}')
         for field_name in fieldset_headers:
             fieldset.append(f'{field_name}={row[field_name]}')
@@ -44,9 +44,12 @@ def fetch_result_to_lineprotocol(result):
 
 def lambda_handler(event, context):
     message = event['Records'][0]['Sns']['Message']
+    message = json.loads(message)
     s3_info = message['Records'][0]['s3']
     s3_bucket = s3_info['bucket']['name']
     s3_object_key = s3_info['object']['key']
+
+    print('S3 object: ', s3_object_key)
 
     # for local debug
     # s3_bucket = 'openaq-fetches'
