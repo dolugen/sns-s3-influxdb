@@ -28,7 +28,7 @@ Resources:
       Layers:
         - !Ref PythonPackages
       Events:
-        HelloWorld:
+        NewFetchObject:
           Type: SNS # More info about SNS Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#sns
           Properties:
             Topic: arn:aws:sns:us-east-1:470049585876:NewFetchObject
