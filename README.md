@@ -21,6 +21,19 @@ The Lambda function requires the following environment variables for InfluxDB:
 * `INFLUXDB_TOKEN`
 * `INFLUXDB_MEASUREMENT_NAME`
 
+This is passed to the Lambda function via Parameters in the template like so:
+
+```
+sam deploy --parameter-overrides \
+    InfluxDBUrl="https://eu-central-1-1.aws.cloud2.influxdata.com" \
+    InfluxDBBucketName=my_bucket \
+    InfluxDBOrg=my_org_id \
+    InfluxDBToken=my_token \
+    InfluxDBMeasurementName=my_measurement_name
+```
+
+The same options can be used with `sam local invoke`.
+
 ## SAM app structure
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
