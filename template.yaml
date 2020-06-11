@@ -25,6 +25,8 @@ Resources:
       CodeUri: write_to_influxdb/
       Handler: app.lambda_handler
       Runtime: python3.7
+      Policies:
+      - AmazonS3ReadOnlyAccess
       Environment:
         Variables:
           INFLUXDB_URL: !Ref InfluxDBUrl
