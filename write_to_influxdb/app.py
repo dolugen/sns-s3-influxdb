@@ -12,7 +12,7 @@ convert them to line protocol format
 write to InfluxDB
 '''
 
-influxdb_url = os.environ['INFLUXB_URL'] 
+influxdb_url = os.environ['INFLUXDB_URL'] 
 influxdb_bucket_id = os.environ['INFLUXDB_BUCKET_ID']
 influxdb_org = os.environ['INFLUXDB_ORG']
 influxdb_token = os.environ['INFLUXDB_TOKEN']
