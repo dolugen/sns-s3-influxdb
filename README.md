@@ -1,11 +1,13 @@
 # sns-s3-influxdb
 
-This is a AWS SAM app for populating an InfluxDB with S3 objects.
+This is a [AWS SAM](https://aws.amazon.com/serverless/sam/) app for populating InfluxDB.
+
+Here's what it does:
 
 * Listens to an SNS topic for a S3ObjectCreated event
 * Grabs the S3 object (ndjson file)
-* Converts it into line protocol format
-* Write to InfluxDB
+* Creates objects out of the file contents
+* Write the objects to InfluxDB
 
 The function is designed to work with [OpenAQ](https://github.com/openaq/openaq-api) fetch objects, but can be adapted to your needs.
 
