@@ -1,8 +1,29 @@
 # sns-s3-influxdb
 
+This is a AWS SAM app that for populating an InfluxDB with S3 objects.
+
+* Listens to an SNS topic for a S3ObjectCreated event
+* Grabs the S3 object
+* Converts it into line protocol format
+* Write to InfluxDB
+
+## Configuration
+
+The SNS topic ARN can be changed in the `template.yml` file
+
+The Lambda function requires the following environment variables for InfluxDB:
+
+* `INFLUXDB_URL`
+* `INFLUXDB_BUCKET_ID`
+* `INFLUXDB_ORG`
+* `INFLUXDB_TOKEN`
+* `INFLUXDB_MEASUREMENT_NAME`
+
+## SAM app structure
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
-- hello_world - Code for the application's Lambda function.
+- write_to_influxdb - Code for the application's Lambda function.
 - events - Invocation events that you can use to invoke the function.
 - tests - Unit tests for the application code. 
 - template.yaml - A template that defines the application's AWS resources.
@@ -52,32 +73,27 @@ Build your application with the `sam build --use-container` command.
 sns-s3-influxdb$ sam build --use-container
 ```
 
-The SAM CLI installs dependencies defined in `hello_world/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
+The SAM CLI installs dependencies defined in `write_to_influxdb/requirements.txt`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
 
 Test a single function by invoking it directly with a test event. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the `events` folder in this project.
 
 Run functions locally and invoke them with the `sam local invoke` command.
 
-```bash
-sns-s3-influxdb$ sam local invoke HelloWorldFunction --event events/event.json
-```
-
-The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
+TODO: Fix the sample event
 
 ```bash
-sns-s3-influxdb$ sam local start-api
-sns-s3-influxdb$ curl http://localhost:3000/
+sns-s3-influxdb$ sam local invoke WriteToInfluxDBFunction --event events/event.json
 ```
 
-The SAM CLI reads the application template to determine the API's routes and the functions that they invoke. The `Events` property on each function's definition includes the route and method for each path.
+The SAM CLI reads the application template to determine the SNS topic to subscribe to.
 
 ```yaml
       Events:
-        HelloWorld:
-          Type: Api
+        NewFetchObject:
+          Type: SNS
           Properties:
-            Path: /hello
-            Method: get
+            Topic: arn:aws:sns:us-east-1:470049585876:NewFetchObject
+    
 ```
 
 ## Add a resource to your application
@@ -90,7 +106,7 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-sns-s3-influxdb$ sam logs -n HelloWorldFunction --stack-name sns-s3-influxdb --tail
+sns-s3-influxdb$ sam logs -n WriteToInfluxDBFunction --stack-name sns-s3-influxdb --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
