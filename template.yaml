@@ -28,7 +28,7 @@ Resources:
       Environment:
         Variables:
           INFLUXDB_URL: !Ref InfluxDBUrl
-          INFLUXDB_BUCKET_ID: !Ref InfluxDBBucketId
+          INFLUXDB_BUCKET_NAME: !Ref InfluxDBBucketName
           INFLUXDB_ORG: !Ref InfluxDBOrg
           INFLUXDB_TOKEN: !Ref InfluxDBToken
           INFLUXDB_MEASUREMENT_NAME: !Ref InfluxDBMeasurementName
@@ -43,7 +43,7 @@ Resources:
 Parameters:
   InfluxDBUrl:
     Type: String
-  InfluxDBBucketId:
+  InfluxDBBucketName:
     Type: String
   InfluxDBOrg:
     Type: String
