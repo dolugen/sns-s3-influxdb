@@ -28,7 +28,7 @@ The Lambda function requires the following environment variables for InfluxDB:
 This is passed to the Lambda function via Parameters in the template like so:
 
 ```
-sam deploy --parameter-overrides \
+sam deploy --guided --parameter-overrides \
     InfluxDBUrl="https://eu-central-1-1.aws.cloud2.influxdata.com" \
     InfluxDBBucketName=my_bucket \
     InfluxDBOrg=my_org_id \
@@ -36,7 +36,7 @@ sam deploy --parameter-overrides \
     InfluxDBMeasurementName=my_measurement_name
 ```
 
-The same options can be used with `sam local invoke`.
+The same options can be used with `sam local invoke` (other than `--guided`).
 
 ## SAM app structure
 
