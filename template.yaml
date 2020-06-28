@@ -11,14 +11,14 @@ Globals:
     Timeout: 30
 
 Resources:
-  PythonPackages:
-    Type: AWS::Serverless::LayerVersion
-    Properties:
-      ContentUri: python_packages
-      CompatibleRuntimes:
-        - python3.7
-    Metadata:
-      BuildMethod: python3.7 
+  # PythonPackages:
+  #   Type: AWS::Serverless::LayerVersion
+  #   Properties:
+  #     ContentUri: python_packages
+  #     CompatibleRuntimes:
+  #       - python3.7
+  #   Metadata:
+  #     BuildMethod: python3.7 
   WriteToInfluxDBFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
@@ -34,8 +34,8 @@ Resources:
           INFLUXDB_ORG: !Ref InfluxDBOrg
           INFLUXDB_TOKEN: !Ref InfluxDBToken
           INFLUXDB_MEASUREMENT_NAME: !Ref InfluxDBMeasurementName
-      Layers:
-        - !Ref PythonPackages
+      # Layers:
+      #   - !Ref PythonPackages
       Events:
         NewFetchObject:
           Type: SNS # More info about SNS Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#sns
